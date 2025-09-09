@@ -1,78 +1,506 @@
-/* Importação da fonte Google Fonts (Roboto) e Font Awesome para ícones */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato e Emergência - Chaveiro Ipanema</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* AQUI COMEÇA O CÓDIGO CSS COMPLETO */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+            --background-light: #f8f9fa;
+            --background-dark: #343a40;
+            --text-color: #212529;
+            --white-color: #ffffff;
+            --red-alert: #dc3545;
+            --green-whatsapp: #28a745;
+        }
 
-:root {
-    /* Paleta de Cores */
-    --primary-color: #007bff; /* Azul vibrante */
-    --secondary-color: #6c757d; /* Cinza escuro */
-    --accent-color: #ffc107; /* Amarelo (para destaques/emergência) */
-    --background-light: #f8f9fa; /* Fundo claro */
-    --background-dark: #343a40; /* Fundo escuro para footer/header */
-    --text-color: #212529; /* Cor principal do texto */
-    --white-color: #ffffff;
-    --red-alert: #dc3545; /* Vermelho para ligar */
-    --green-whatsapp: #28a745; /* Verde para WhatsApp */
-}
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-light);
-    color: var(--text-color);
-    line-height: 1.6;
-    scroll-behavior: smooth; /* Rolagem suave */
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
 
-.container {
-    max-width: 1200px; /* Um pouco mais largo */
-    margin: 0 auto;
-    padding: 0 25px; /* Mais padding nas laterais */
-}
+        header {
+            background: var(--background-dark);
+            color: var(--white-color);
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* Header */
-header {
-    background: var(--background-dark);
-    color: var(--white-color);
-    padding: 1.2rem 0; /* Um pouco mais de padding */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky; /* Sticky header */
-    top: 0;
-    z-index: 1000;
-}
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
+        .logo {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
 
-.logo {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent-color); /* Logo em amarelo destaque */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
+        nav ul li {
+            margin-left: 30px;
+        }
 
-nav ul li {
-    margin-left: 30px; /* Mais espaçamento entre os itens */
-}
+        nav ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 400;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
 
-nav ul li a {
-    color: var(--white-color);
-    text-decoration: none;
-    font-weight: 400;
-    padding: 8px 0;
-    position: relative;
-    transition: color 0.3
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        main section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.8rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-principal {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-principal:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secundario {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+
+        .btn-secundario:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-ligar {
+            background-color: var(--red-alert);
+            color: var(--white-color);
+        }
+
+        .btn-ligar:hover {
+            background-color: #c82333;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green-whatsapp);
+            color: var(--white-color);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #218838;
+        }
+        
+        #contato-form {
+            background-color: var(--background-light);
+        }
+
+        .form-contato {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--white-color);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .form-grupo {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-grupo label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .form-grupo input[type="text"],
+        .form-grupo input[type="tel"],
+        .form-grupo input[type="email"],
+        .form-grupo select,
+        .form-grupo textarea {
+            width: calc(100% - 24px);
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-grupo input:focus,
+        .form-grupo select:focus,
+        .form-grupo textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .form-grupo textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-contato button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        #contato-direto {
+            background-color: var(--background-dark);
+            color: var(--white-color);
+            padding: 4rem 0;
+        }
+
+        #contato-direto h2 {
+            color: var(--accent-color);
+            font-size: 2.8rem;
+        }
+
+        #contato-direto h2::after {
+            background-color: var(--white-color);
+        }
+
+        .botoes-contato-direto {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .btn-ligar-grande,
+        .btn-whatsapp-grande {
+            padding: 18px 35px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-ligar-grande i {
+            color: var(--white-color);
+            font-size: 1.5rem;
+        }
+
+        .btn-whatsapp-grande i {
+            color: var(--white-color);
+            font-size: 1.5rem;
+        }
+
+        /* AJUSTE PARA O BOTÃO DO WHATSAPP */
+        .btn-whatsapp-grande {
+            background-color: var(--green-whatsapp);
+            color: var(--white-color); /* A cor do texto do botão é branca */
+        }
+        .btn-whatsapp-grande i {
+            color: var(--white-color); /* E a cor do ícone é branca, como você pediu na versão anterior */
+        }
+
+        /* Nova regra para o estilo hover e para deixar o texto verde */
+        .btn-whatsapp-grande:hover {
+            color: var(--green-whatsapp); /* Cor do texto fica verde ao passar o mouse */
+            background-color: var(--white-color); /* Fundo fica branco */
+            border: 2px solid var(--green-whatsapp); /* Adiciona uma borda verde */
+        }
+
+        .btn-whatsapp-grande:hover i {
+            color: var(--green-whatsapp); /* A cor do ícone também fica verde ao passar o mouse */
+        }
+
+        .endereco {
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer {
+            background: var(--background-dark);
+            color: #bbb;
+            text-align: center;
+            padding: 1.8rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 20px;
+            }
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 0 15px;
+            }
+            .servico-categoria {
+                padding: 30px;
+            }
+            .form-contato {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 8px 0;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .botoes-contato-direto {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn-ligar-grande,
+            .btn-whatsapp-grande {
+                width: 90%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            .logo {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">Chaveiro Ipanema</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="contato.html" class="active">Contato & Emergência</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="contato-form">
+            <div class="container">
+                <h2>Entre em Contato ou Peça um Orçamento</h2>
+                <p>Preencha o formulário abaixo para enviar uma mensagem direta para nosso WhatsApp.</p>
+
+                <div class="form-contato">
+                    <div class="form-grupo">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" id="endereco" name="endereco" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="servico">Tipo de Serviço:</label>
+                        <select id="servico" name="servico" required>
+                            <option value="Serviço não especificado">Selecione um serviço</option>
+                            <option value="Residencial">Residencial</option>
+                            <option value="Automotivo">Automotivo</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="mensagem">Mensagem / Detalhes:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-principal" onclick="enviarWhatsapp()">Enviar Mensagem</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato-direto">
+            <div class="container">
+                <h2>Emergência 24h? Contate-nos Imediatamente!</h2>
+                <div class="botoes-contato-direto">
+                    <a href="tel:+5534988887777" class="btn btn-ligar-grande"><i class="fas fa-phone"></i> Ligar Agora (24h)</a>
+                    <a href="https://wa.me/5534988887777" class="btn btn-whatsapp-grande" target="_blank"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
+                </div>
+                <p class="endereco"><i class="fas fa-map-marker-alt"></i> Estamos em Patos de Minas, MG.</p>
+                <p>Atendimento rápido e confiável a qualquer hora!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chaveiro Ipanema. Todos os direitos reservados. | Patos de Minas, MG</p>
+        </div>
+    </footer>
+    
+    <script>
+        function enviarWhatsapp() {
+            try {
+                const nome = document.getElementById('nome').value || 'Não informado';
+                const telefone = document.getElementById('telefone').value || 'Não informado';
+                const endereco = document.getElementById('endereco').value || 'Não informado';
+                const servico = document.getElementById('servico').value || 'Não especificado';
+                const mensagem = document.getElementById('mensagem').value || 'Nenhuma mensagem.';
+                
+                if (endereco.trim() === '' || endereco.trim() === 'Não informado') {
+                    alert('Por favor, preencha o endereço para que possamos localizá-lo rapidamente.');
+                    return;
+                }
+
+                const textoMensagem = `*Olá, Chaveiro Ipanema!*\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:* ${endereco}\n*Serviço:* ${servico}\n*Mensagem:* ${mensagem}`;
+                
+                const numeroWhatsApp = '+5534988887777'; 
+                
+                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensagem)}`;
+                
+                window.open(urlWhatsApp, '_blank');
+            } catch (error) {
+                alert('Não foi possível enviar a mensagem. Por favor, tente novamente ou use os botões abaixo.');
+                console.error('Erro ao enviar para WhatsApp:', error);
+            }
+        }
+    </script>
+</body>
+</html>

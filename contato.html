@@ -292,11 +292,33 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-ligar-grande i,
-        .btn-whatsapp-grande i {
+        .btn-ligar-grande i {
+            color: var(--white-color);
             font-size: 1.5rem;
         }
 
+        /* AJUSTE PARA O BOTÃO DO WHATSAPP */
+        .btn-whatsapp-grande {
+            background-color: var(--green-whatsapp);
+            color: var(--white-color);
+        }
+
+        .btn-whatsapp-grande i {
+            color: var(--white-color) !important;
+            font-size: 1.5rem;
+        }
+        
+        /* Nova regra para o estilo hover */
+        .btn-whatsapp-grande:hover {
+            color: var(--green-whatsapp); 
+            background-color: var(--white-color); 
+            border: 2px solid var(--green-whatsapp);
+        }
+
+        .btn-whatsapp-grande:hover i {
+            color: var(--green-whatsapp) !important;
+        }
+        
         .endereco {
             margin-top: 3rem;
             font-size: 1.2rem;
@@ -408,6 +430,27 @@
                         <label for="telefone">Telefone:</label>
                         <input type="tel" id="telefone" name="telefone" required>
                     </div>
+                    
+                    <div class="form-grupo">
+                        <label for="endereco-rua">Rua:</label>
+                        <input type="text" id="endereco-rua" name="endereco-rua" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="endereco-numero">Número:</label>
+                        <input type="text" id="endereco-numero" name="endereco-numero" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="endereco-complemento">Complemento (Opicional):</label>
+                        <input type="text" id="endereco-complemento" name="endereco-complemento">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="endereco-bairro">Bairro:</label>
+                        <input type="text" id="endereco-bairro" name="endereco-bairro" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="endereco-cidade">Cidade:</label>
+                        <input type="text" id="endereco-cidade" name="endereco-cidade" required>
+                    </div>
                     <div class="form-grupo">
                         <label for="servico">Tipo de Serviço:</label>
                         <select id="servico" name="servico" required>
@@ -451,12 +494,22 @@
             try {
                 const nome = document.getElementById('nome').value || 'Não informado';
                 const telefone = document.getElementById('telefone').value || 'Não informado';
+                const rua = document.getElementById('endereco-rua').value || '';
+                const numero = document.getElementById('endereco-numero').value || '';
+                const complemento = document.getElementById('endereco-complemento').value || 'Não informado';
+                const bairro = document.getElementById('endereco-bairro').value || '';
+                const cidade = document.getElementById('endereco-cidade').value || '';
                 const servico = document.getElementById('servico').value || 'Não especificado';
                 const mensagem = document.getElementById('mensagem').value || 'Nenhuma mensagem.';
-
-                const textoMensagem = `*Olá, Chaveiro Ipanema!*\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Serviço:* ${servico}\n*Mensagem:* ${mensagem}`;
                 
-                // O número precisa estar no formato internacional, começando com o código do país (+55)
+                // Validação para garantir que os campos obrigatórios foram preenchidos
+                if (rua.trim() === '' || numero.trim() === '' || bairro.trim() === '' || cidade.trim() === '') {
+                    alert('Por favor, preencha todos os campos obrigatórios do endereço (Rua, Número, Bairro e Cidade).');
+                    return;
+                }
+
+                const textoMensagem = `*Olá, Chaveiro Ipanema!*\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:*\n> Rua: ${rua}, ${numero}\n> Complemento: ${complemento}\n> Bairro: ${bairro}\n> Cidade: ${cidade}\n*Serviço:* ${servico}\n*Mensagem:* ${mensagem}`;
+                
                 const numeroWhatsApp = '+5534991307769'; 
                 
                 const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensagem)}`;
