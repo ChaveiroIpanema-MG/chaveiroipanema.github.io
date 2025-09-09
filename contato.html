@@ -448,22 +448,24 @@
     
     <script>
         function enviarWhatsapp() {
-            const nome = document.getElementById('nome').value;
-            const telefone = document.getElementById('telefone').value;
-            const servico = document.getElementById('servico').value;
-            const mensagem = document.getElementById('mensagem').value;
-            
-            if (nome.trim() === '' || telefone.trim() === '') {
-                alert('Por favor, preencha seu nome e telefone.');
-                return;
-            }
+            try {
+                const nome = document.getElementById('nome').value || 'Não informado';
+                const telefone = document.getElementById('telefone').value || 'Não informado';
+                const servico = document.getElementById('servico').value || 'Não especificado';
+                const mensagem = document.getElementById('mensagem').value || 'Nenhuma mensagem.';
 
-            const textoMensagem = `*Olá, Chaveiro Ipanema!*%0A%0A*Nome:* ${nome}%0A*Telefone:* ${telefone}%0A*Serviço:* ${servico}%0A*Mensagem:* ${mensagem}%0A%0A_Favor entrar em contato o mais rápido possível._`;
-            
-            const numeroWhatsApp = '5534991307769'; // Substitua pelo seu número de WhatsApp com DDI
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensagem)}`;
-            
-            window.open(urlWhatsApp, '_blank');
+                const textoMensagem = `*Olá, Chaveiro Ipanema!*\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Serviço:* ${servico}\n*Mensagem:* ${mensagem}`;
+                
+                // O número precisa estar no formato internacional, começando com o código do país (+55)
+                const numeroWhatsApp = '+5534991307769'; 
+                
+                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensagem)}`;
+                
+                window.open(urlWhatsApp, '_blank');
+            } catch (error) {
+                alert('Não foi possível enviar a mensagem. Por favor, tente novamente ou use os botões abaixo.');
+                console.error('Erro ao enviar para WhatsApp:', error);
+            }
         }
     </script>
 </body>
