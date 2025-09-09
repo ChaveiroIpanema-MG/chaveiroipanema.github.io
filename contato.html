@@ -397,9 +397,9 @@
         <section id="contato-form">
             <div class="container">
                 <h2>Entre em Contato ou Peça um Orçamento</h2>
-                <p>Preencha o formulário abaixo ou utilize nossos contatos diretos para um atendimento rápido.</p>
+                <p>Preencha o formulário abaixo para enviar uma mensagem direta para nosso WhatsApp.</p>
 
-                <form action="#" method="POST" class="form-contato">
+                <div class="form-contato">
                     <div class="form-grupo">
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" name="nome" required>
@@ -409,25 +409,21 @@
                         <input type="tel" id="telefone" name="telefone" required>
                     </div>
                     <div class="form-grupo">
-                        <label for="email">E-mail (opcional):</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="form-grupo">
                         <label for="servico">Tipo de Serviço:</label>
                         <select id="servico" name="servico" required>
-                            <option value="">Selecione um serviço</option>
-                            <option value="residencial">Residencial</option>
-                            <option value="automotivo">Automotivo</option>
-                            <option value="comercial">Comercial</option>
-                            <option value="outro">Outro</option>
+                            <option value="Serviço não especificado">Selecione um serviço</option>
+                            <option value="Residencial">Residencial</option>
+                            <option value="Automotivo">Automotivo</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Outro">Outro</option>
                         </select>
                     </div>
                     <div class="form-grupo">
                         <label for="mensagem">Mensagem / Detalhes:</label>
                         <textarea id="mensagem" name="mensagem" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-principal">Enviar Mensagem</button>
-                </form>
+                    <button type="submit" class="btn btn-principal" onclick="enviarWhatsapp()">Enviar Mensagem</button>
+                </div>
             </div>
         </section>
 
@@ -435,10 +431,10 @@
             <div class="container">
                 <h2>Emergência 24h? Contate-nos Imediatamente!</h2>
                 <div class="botoes-contato-direto">
-                    <a href="tel:+5534991307769" class="btn btn-ligar-grande"><i class="fas fa-phone"></i> Ligar Agora (24h)</a>
-                    <a href="https://wa.me/5534991307769" class="btn btn-whatsapp-grande" target="_blank"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
+                    <a href="tel:+5534988887777" class="btn btn-ligar-grande"><i class="fas fa-phone"></i> Ligar Agora (24h)</a>
+                    <a href="https://wa.me/5534988887777" class="btn btn-whatsapp-grande" target="_blank"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
                 </div>
-                <p class="endereco"><i class="fas fa-map-marker-alt"></i> Estamos em Rua Leontina Rocha Caixeta Nº248, Bairro Ipanema - Patos de Minas, MG.</p>
+                <p class="endereco"><i class="fas fa-map-marker-alt"></i> Estamos em Patos de Minas, MG.</p>
                 <p>Atendimento rápido e confiável a qualquer hora!</p>
             </div>
         </section>
@@ -446,8 +442,29 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Chaveiro Ipanema. Todos os direitos reservados. | Patos de Minas, MG</p>
+            <p>&copy; 2024 Chaveiro Ipanema. Todos os direitos reservados. | Patos de Minas, MG</p>
         </div>
     </footer>
+    
+    <script>
+        function enviarWhatsapp() {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const servico = document.getElementById('servico').value;
+            const mensagem = document.getElementById('mensagem').value;
+            
+            if (nome.trim() === '' || telefone.trim() === '') {
+                alert('Por favor, preencha seu nome e telefone.');
+                return;
+            }
+
+            const textoMensagem = `*Olá, Chaveiro Ipanema!*%0A%0A*Nome:* ${nome}%0A*Telefone:* ${telefone}%0A*Serviço:* ${servico}%0A*Mensagem:* ${mensagem}%0A%0A_Favor entrar em contato o mais rápido possível._`;
+            
+            const numeroWhatsApp = '5534988887777'; // Substitua pelo seu número de WhatsApp com DDI
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensagem)}`;
+            
+            window.open(urlWhatsApp, '_blank');
+        }
+    </script>
 </body>
 </html>
