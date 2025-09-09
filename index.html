@@ -4,26 +4,415 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaveiro Ipanema - 24 Horas em Patos de Minas</title>
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Paleta de Cores */
+        :root {
+            --primary-color: #007bff; /* Azul vibrante */
+            --secondary-color: #6c757d; /* Cinza escuro */
+            --accent-color: #ffc107; /* Amarelo (para destaques/emergência) */
+            --background-light: #f8f9fa; /* Fundo claro */
+            --background-dark: #343a40; /* Fundo escuro para footer/header */
+            --text-color: #212529; /* Cor principal do texto */
+            --white-color: #ffffff;
+            --red-alert: #dc3545; /* Vermelho para ligar */
+            --green-whatsapp: #28a745; /* Verde para WhatsApp */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Rolagem suave */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* Header */
+        header {
+            background: var(--background-dark);
+            color: var(--white-color);
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 400;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Seções Gerais */
+        main section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.8rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-principal {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-principal:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secundario {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+
+        .btn-secundario:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-ligar {
+            background-color: var(--red-alert);
+            color: var(--white-color);
+        }
+
+        .btn-ligar:hover {
+            background-color: #c82333;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green-whatsapp);
+            color: var(--white-color);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #218838;
+        }
+
+        /* Seção Hero (Home) */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1621905252507-b35399589d9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--white-color);
+            padding: 8rem 0;
+        }
+
+        #hero h2 {
+            color: var(--white-color);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
+        }
+
+        #hero .btn {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Seção Sobre Nós */
+        #sobre-nos {
+            background-color: var(--white-color);
+            padding: 3.5rem 0;
+        }
+
+        #sobre-nos p {
+            max-width: 800px;
+            margin: 0 auto 1rem auto;
+            font-size: 1.15rem;
+        }
+
+        /* Seção Serviços Destaque (Home) */
+        #servicos-destaque {
+            background-color: var(--background-light);
+        }
+
+        .servicos-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .servico-item {
+            background: var(--white-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 350px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .servico-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .servico-item h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .servico-item i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        /* Seção Chamada Contato (Home) */
+        #chamada-contato {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 3rem 0;
+        }
+
+        #chamada-contato h2 {
+            color: var(--white-color);
+            font-size: 2.5rem;
+        }
+
+        .botoes-contato {
+            margin-top: 30px;
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--background-dark);
+            color: #bbb;
+            text-align: center;
+            padding: 1.8rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 20px;
+            }
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 0 15px;
+            }
+            #hero h2 {
+                font-size: 3rem;
+            }
+            .servicos-grid {
+                gap: 20px;
+            }
+            .servico-item {
+                max-width: 45%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 8px 0;
+            }
+            #hero {
+                padding: 6rem 0;
+            }
+            #hero h2 {
+                font-size: 2.5rem;
+            }
+            #hero p {
+                font-size: 1.1rem;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .servicos-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .servico-item {
+                max-width: 90%;
+            }
+            .botoes-contato-direto {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn-ligar-grande,
+            .btn-whatsapp-grande {
+                width: 90%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .form-contato {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            .logo {
+                font-size: 1.6rem;
+            }
+            #hero h2 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .servico-item h3 {
+                font-size: 1.4rem;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <header>
         <div class="container">
             <h1 class="logo">Chaveiro Ipanema</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="servicos.html">Serviços</a></li>
                     <li><a href="contato.html">Contato & Emergência</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
+    
     <main>
         <section id="hero">
             <div class="container">
@@ -45,16 +434,16 @@
                 <h2>Nossos Principais Serviços</h2>
                 <div class="servicos-grid">
                     <div class="servico-item">
-                        <h3><i class="icon-home"></i> Residencial</h3>
+                        <h3><i class="fas fa-home"></i> Residencial</h3>
                         <p>Abertura de portas, troca de segredos, instalação de fechaduras, cópias de chaves e muito mais para a sua casa.</p>
                     </div>
                     <div class="servico-item">
-                        <h3><i class="icon-car"></i> Automotivo</h3>
+                        <h3><i class="fas fa-car"></i> Automotivo</h3>
                         <p>Cópia de chaves codificadas, abertura de veículos, reparos em ignições e sistemas de segurança automotiva.</p>
                     </div>
                     <div class="servico-item">
-                        <h3><i class="icon-building"></i> Comercial</h3>
-                        <p>Chaves mestras, fechaduras de alta segurança, controle de acesso e manutenção para empresas e estabelecimentos.</p>
+                        <h3><i class="fas fa-building"></i> Comercial</h3>
+                        <p>Chaves mestras, fechaduras de alta segurança, controle de acesso e manutenção para sua empresa.</p>
                     </div>
                 </div>
                 <a href="servicos.html" class="btn btn-secundario">Ver Todos os Serviços</a>
@@ -77,6 +466,5 @@
             <p>&copy; 2024 Chaveiro Ipanema. Todos os direitos reservados. | Patos de Minas, MG</p>
         </div>
     </footer>
-
 </body>
 </html>
